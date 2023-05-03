@@ -1,0 +1,23 @@
+---
+- name: Update and reboot Ubuntu host
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Upgrade packages
+      ansible.builtin.apt:
+        upgrade: safe
+      register: apt_upgrade_result
+
+    - name: Check if a reboot is required
+      stat:
+        path: /var/run/reboot-required
+      register: reboot_required
+
+    - name: Reboot the host if needed
+      ansible.builtin.reboot:
+        msg: "Rebooting due to package updates"
+      when: reboot_required.stat.exists and apt_upgrade_result.changed
