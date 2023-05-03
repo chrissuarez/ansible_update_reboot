@@ -2,6 +2,8 @@
 - name: Update and reboot Ubuntu host
   hosts: localhost
   become: yes
+  vars:
+    ansible_connection: ssh
   tasks:
     - name: Update apt cache
       ansible.builtin.apt:
@@ -21,3 +23,4 @@
       ansible.builtin.reboot:
         msg: "Rebooting due to package updates"
       when: reboot_required.stat.exists and apt_upgrade_result.changed
+
