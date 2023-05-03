@@ -4,6 +4,7 @@
   become: yes
   vars:
     ansible_connection: ssh
+    ansible_user: chris
   tasks:
     - name: Update apt cache
       ansible.builtin.apt:
