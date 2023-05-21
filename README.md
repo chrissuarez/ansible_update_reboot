@@ -12,4 +12,7 @@ Test access with: ssh chris@localhost <br>
  <br>
 sudo crontab -e <br>
  <br>
-30 3 * * * /usr/bin/ansible-pull -U https://github.com/chrissuarez/ansible_update_reboot.git update_and_reboot.yml
+30 3 * * * /usr/bin/ansible-pull -U https://github.com/chrissuarez/ansible_update_reboot.git update_and_reboot.yml<br>
+<br>
+Create the file called "chris" in "/etc/sudoers.d" with the following line:<br>
+chris ALL=(ALL) NOPASSWD: ALL
