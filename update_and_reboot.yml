@@ -1,6 +1,6 @@
 ---
 - name: Update and reboot Ubuntu host
-  hosts: localhost
+  hosts: all
   become: yes
   vars:
     ansible_connection: ssh
